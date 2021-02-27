@@ -25,4 +25,6 @@ class TelegramBotTest {
         Update update = objectMapper.readValue(new File("src/test/resources/update.json"), Update.class);
         telegramBot.onUpdateReceived(update);
     }
+
+
 }
