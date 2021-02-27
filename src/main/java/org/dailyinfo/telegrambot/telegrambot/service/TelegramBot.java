@@ -13,8 +13,7 @@ import java.io.File;
 @Component
 @PropertySource("application.properties")
 public class TelegramBot extends TelegramLongPollingBot {
-
-    @Value("${bot.userName}")
+    @Value("${bot.username}")
     private String botUserName;
     @Value("${bot.token}")
     private String botToken;
@@ -25,8 +24,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         try {
-            objectMapper.writeValue(new File
-                    ("src/test/resources/update.json"),update);
+            objectMapper.writeValue(new File("src/test/resources/update.json"),update);
 //            System.out.println("written");
         } catch (Exception ex) {
             ex.printStackTrace();

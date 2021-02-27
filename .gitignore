@@ -36,4 +36,4 @@ build/
 # @PropertySource("application.properties")
 # couldn`t see @value
 #
-# *.properties
+*.properties
