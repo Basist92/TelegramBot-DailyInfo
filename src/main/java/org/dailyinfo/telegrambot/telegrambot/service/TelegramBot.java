@@ -15,6 +15,7 @@ import java.io.File;
 @Component
 @PropertySource("application.properties")
 public class TelegramBot extends TelegramLongPollingBot {
+
     @Value("${bot.username}")
     private String botUserName;
     @Value("${bot.token}")
@@ -37,7 +38,6 @@ public class TelegramBot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
