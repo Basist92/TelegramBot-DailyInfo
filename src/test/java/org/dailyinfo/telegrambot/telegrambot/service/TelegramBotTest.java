@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = {TelegramBot.class, Mapper.class})
+@SpringBootTest(classes = {TelegramBot.class, Mapper.class, MessageService.class})
 class TelegramBotTest {
 
     @Autowired
