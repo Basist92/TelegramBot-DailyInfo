@@ -12,7 +12,7 @@ import java.io.IOException;
 @Service
 public class MessageService {
 
-    public SendMessage onUpdateReceived(Update update) {
+    public SendMessage onUpdateReceived(Update update) throws IOException {
         SendMessage sendMessage = new SendMessage();
         if (update != null) {
             Message message = update.getMessage();
@@ -27,12 +27,7 @@ public class MessageService {
                     case "/help":
                         return sendMessage.setText("assistance at the development stage");
                     case "/rates":
-                        try {
                             return sendMessage.setText(new View().present());
-
-                        } catch (IOException e) {
-                            return sendMessage.setText(e.getMessage());
-                        }
                 }
             }
         }

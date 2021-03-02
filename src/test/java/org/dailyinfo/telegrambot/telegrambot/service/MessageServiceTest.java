@@ -65,6 +65,17 @@ class MessageServiceTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    @Test
+    void onRatesSReceived() throws IOException {
+
+        Update update = objectMapper.readValue(
+                new File("src/test/resources/botCommand/rates.json"), Update.class);
+
+        SendMessage actualResult = messageService.onUpdateReceived(update);
+        SendMessage expectedResult = createMessage("");
+        assertEquals(expectedResult, actualResult);
+    }
+
     private SendMessage createMessage(String text) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(763001640L);
