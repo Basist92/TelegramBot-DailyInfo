@@ -1,6 +1,7 @@
 package org.dailyinfo.telegrambot.telegrambot.service;
 
 import org.dailyinfo.telegrambot.telegrambot.service.weather.Weather;
+import org.dailyinfo.telegrambot.telegrambot.service.weather.WeatherParsing;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -11,9 +12,10 @@ import java.io.IOException;
 @Service
 public class MessageService {
 
-    public SendMessage onUpdateReceived(Update update) {
+    public SendMessage onUpdateReceived(Update update) throws IOException {
         SendMessage sendMessage = new SendMessage();
-        Weather weather = new Weather();
+    WeatherParsing weather = new WeatherParsing();
+
         if (update != null) {
             Message message = update.getMessage();
             sendMessage.setChatId(message.getChatId());
@@ -26,11 +28,7 @@ public class MessageService {
                 } else if (messageText.equals("/help")) {
                     return sendMessage.setText("assistance at the development stage");
                 }else if (messageText.equals("/weather")) {
-                    try {
-                        return sendMessage.setText(weather.connection());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    return sendMessage.setText(weather.getWeather());
                 }
             }
         }
