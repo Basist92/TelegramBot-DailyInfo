@@ -6,4 +6,4 @@
 * Shpaser2
 * DenisAbramovDm’s 
 * AnzhelaKhamitskaya’s 
-* Awaiting AleksandrBohan’s response
+* AleksandrBohan’s response
