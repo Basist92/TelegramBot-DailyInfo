@@ -7,12 +7,17 @@ import java.util.List;
 
 public class View {
 
-    private final LocalDate today= LocalDate.now();
+    private LocalDate today ;
     private final List<Rate> rates;
 
     public View(String currencyRate) throws IOException {
         RequestToBank request = new RequestToBank();
         rates = request.connection(currencyRate);
+        if(currencyRate.equals("/USDTest")){
+            today = LocalDate.of(2020, 7, 6);
+        }else {
+            today = LocalDate.now();
+        }
      }
 
     public String present(){

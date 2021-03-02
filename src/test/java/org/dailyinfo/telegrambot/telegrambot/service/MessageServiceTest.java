@@ -83,7 +83,7 @@ class MessageServiceTest {
 
     private String exampleWithUSD() {
         String usdExample = String.format("ОФИЦИАЛЬНЫЕ КУРСЫ ВАЛЮТ ПО НБРБ на сегодня \n%s\n\n",
-                LocalDate.now().format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))) + "\n" +
+                LocalDate.of(2020, 7, 6).format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))) + "\n" +
                 "\n" +
                 " Код   Кол. Ед.   Валюта                                  Курс   \n" +
                 "======================================================== USD   1     " +
