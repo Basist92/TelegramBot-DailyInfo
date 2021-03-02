@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# if add this file,
+# @PropertySource("application.properties")
+# couldn`t see @value
+#
+*.properties
