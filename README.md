@@ -1,6 +1,14 @@
-# Telegram Bot to display daily information
+# Daily telegram bot
 
-### team members
+You can check the bot, 
+write in search: *@YourDailyInfo_bot*
+
+####For starting bot, push the button "Start"
+
+## Quote
+if you want a random quote, please write a command */quote*
+
+### Team members
 
 * Basist92
 * Shpaser2
