@@ -12,26 +12,28 @@ import java.io.IOException;
 @Service
 public class MessageService {
 
-    public SendMessage onUpdateReceived(Update update) throws IOException {
-        SendMessage sendMessage = new SendMessage();
-        if (update != null) {
-            Message message = update.getMessage();
-            sendMessage.setChatId(message.getChatId());
-            if (message.hasText()) {
-                String messageText = message.getText();
-                switch (messageText) {
-                    case "/start":
+        public SendMessage onUpdateReceived(Update update) {
+            SendMessage sendMessage = new SendMessage();
+            if (update != null) {
+                Message message = update.getMessage();
+                sendMessage.setChatId(message.getChatId());
+                if (message != null && message.hasText()) {
+                    String messageText = message.getText();
+                    if (messageText.equals("/start")) {
                         return sendMessage.setText("Hi! I am your bot for every day =)");
-                    case "/settings":
+                    } else if (messageText.equals("/settings")) {
                         return sendMessage.setText("currently no settings");
-                    case "/help":
+                    } else if (messageText.equals("/help")) {
                         return sendMessage.setText("assistance at the development stage");
-                    case "/rates":
+                    }else if(messageText.equals("/rates")){
+                        try {
                             return sendMessage.setText(new View().present());
+                        } catch (IOException e) {
+                            return sendMessage.setText(e.getMessage());
+                        }
+                    }
                 }
             }
+            return sendMessage.setText("sorry, i don`t understand you");
         }
-        return sendMessage.setText("sorry, i don`t understand you");
-    }
-
 }

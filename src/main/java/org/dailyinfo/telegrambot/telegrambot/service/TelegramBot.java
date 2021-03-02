@@ -31,14 +31,9 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
 
 //      this is method will need for covering by test (he saves JSON)
-//        saveJSON(update);
+//      saveJSON(update);
 
-        SendMessage sendMessage = null;
-        try {
-            sendMessage = messageService.onUpdateReceived(update);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        SendMessage sendMessage = messageService.onUpdateReceived(update);
 
         try {
             execute(sendMessage);
