@@ -4,6 +4,6 @@
 
 * Basist92
 * Shpaser2
-* DenisAbramovDm’s response
-* AnzhelaKhamitskaya’s response
+* DenisAbramovDm’s 
+* AnzhelaKhamitskaya’s 
 * AleksandrBohan’s response
