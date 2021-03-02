@@ -27,7 +27,22 @@ public class MessageService {
                         return sendMessage.setText("assistance at the development stage");
                     }else if(messageText.equals("/rates")){
                         try {
-                            return sendMessage.setText(new View().present());
+                            return sendMessage.setText(new View("/rates")
+                                    .present());
+                        } catch (IOException e) {
+                            return sendMessage.setText(e.getMessage());
+                        }
+                    }else if(messageText.equals("/USD")){
+                        try {
+                            return sendMessage.setText(new View("/USD")
+                                    .present());
+                        } catch (IOException e) {
+                            return sendMessage.setText(e.getMessage());
+                        }
+                    }else if(messageText.equals("/USDTest")){
+                        try {
+                            return sendMessage.setText(new View("/USDTest")
+                                    .present());
                         } catch (IOException e) {
                             return sendMessage.setText(e.getMessage());
                         }

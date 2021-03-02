@@ -10,7 +10,13 @@ import java.util.List;
 
 public class RequestToBank {
 
-    private final StringBuilder requestUrl = new StringBuilder("https://www.nbrb.by/api/exrates/rates?periodicity=0&ondate=");
+//    private final StringBuilder requestUrl = new StringBuilder("https://www.nbrb.by/api/exrates/rates?periodicity=0&ondate=");
+    private final String RATES_URL = "?periodicity=0&ondate=";
+    //http://nbrb.by/api/exrates/rates/840?parammode=1&ondate=2020-7-6&periodicity=0
+    private final String USDTest_URL = "/840?parammode=1&ondate=2020-7-6&periodicity=0";
+    private final String USD_URL = "/840?parammode=1";
+    private final String BASE_URL = "https://www.nbrb.by/api/exrates/rates";
+
 
     private final JsonParser jsonParser;
 
@@ -18,9 +24,9 @@ public class RequestToBank {
         jsonParser = new JsonParser();
     }
 
-    public List<Rate> connection() throws IOException {
+    public List<Rate> connection(String currencyRate) throws IOException {
 
-        URL url = new URL(requestUrl.toString());
+        URL url = new URL(makeUrlForRateRequest(currencyRate));
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.connect();
@@ -34,6 +40,23 @@ public class RequestToBank {
         String response = convertStreamToString(in);
 
         return jsonParser.getRates(response);
+    }
+
+    private String makeUrlForRateRequest(String currencyRate) {
+        StringBuilder ratesUrl = new StringBuilder(BASE_URL);
+        switch (currencyRate) {
+            default:
+            case "/rates":
+                ratesUrl.append(RATES_URL);
+                break;
+            case "/USDTest":
+                ratesUrl.append(USDTest_URL);
+                break;
+            case "/USD":
+                ratesUrl.append(USD_URL);
+                break;
+        }
+        return ratesUrl.toString();
     }
 
     private String convertStreamToString(InputStream stream) throws IOException {

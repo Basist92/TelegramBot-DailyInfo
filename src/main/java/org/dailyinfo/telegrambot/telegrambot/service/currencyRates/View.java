@@ -10,16 +10,17 @@ public class View {
     private final LocalDate today= LocalDate.now();
     private final List<Rate> rates;
 
-    public View() throws IOException {
+    public View(String currencyRate) throws IOException {
         RequestToBank request = new RequestToBank();
-        rates = request.connection();
+        rates = request.connection(currencyRate);
      }
 
     public String present(){
         StringBuilder str = new StringBuilder();
-        str.append(String.format("ОФИЦИАЛЬНЫЕ КУРСЫ ВАЛЮТ ПО НБРБ на сегодня \n%s\n\n", today.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))));
+        str.append(String.format("ОФИЦИАЛЬНЫЕ КУРСЫ ВАЛЮТ ПО НБРБ на сегодня \n%s\n\n",
+                today.format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))));
         str.append("\tКод  \tКол. Ед.  \tВалюта                                 \tКурс   \n");
-        str.append("=========================================================");
+        str.append("========================================================");
 
         for (Rate rate:
                 rates) {
