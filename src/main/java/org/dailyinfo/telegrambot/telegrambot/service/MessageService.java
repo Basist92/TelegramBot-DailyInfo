@@ -3,26 +3,39 @@ package org.dailyinfo.telegrambot.telegrambot.service;
 
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.*;
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.Horoscope.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-@Service
-public class MessageService extends Horoscope{
 
-        Aquarius aquarius = new Aquarius();
-        Aries aries = new Aries();
-        Cancer cancer = new Cancer();
-        Capricorn capricorn = new Capricorn();
-        Gemini gemini = new Gemini();
-        Leo leo = new Leo();
-        Libra libra = new Libra();
-        Pisces pisces = new Pisces();
-        Saggittarius saggittarius = new Saggittarius();
-        Scorpio scorpio = new Scorpio();
-        Taurus taurus = new Taurus();
-        Virgo virgo  = new Virgo();
+
+@Service
+public class MessageService{
+@Autowired
+        Aquarius aquarius;
+    @Autowired
+        Aries aries;
+    @Autowired
+        Cancer cancer;
+    @Autowired
+        Capricorn capricorn;
+    @Autowired
+        Gemini gemini;
+        Leo leo;
+    @Autowired
+        Libra libra;
+    @Autowired
+        Pisces pisces;
+    @Autowired
+        Saggittarius saggittarius;
+    @Autowired
+        Scorpio scorpio;
+    @Autowired
+        Taurus taurus;
+    @Autowired
+        Virgo virgo;
 
     public SendMessage onUpdateReceived(Update update) {
         Aquarius aquarius = new Aquarius();
@@ -30,7 +43,7 @@ public class MessageService extends Horoscope{
         SendMessage sendMessage = new SendMessage();
         if (update != null) {
             Message message = update.getMessage();
-           // sendMessage.setChatId(message.getChatId());
+            sendMessage.setChatId(message.getChatId());
             if (message != null && message.hasText()) {
                 String messageText = message.getText();
                 if (messageText.equals("/horoscope")) {
@@ -96,7 +109,7 @@ public class MessageService extends Horoscope{
 
             }
         }
-        return sendMessage.setText("I don't know this horoscope!");
+        return sendMessage.setText("sorry, i don`t understand you");
     }
 
 }
