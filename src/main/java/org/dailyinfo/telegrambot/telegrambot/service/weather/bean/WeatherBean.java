@@ -1,110 +1,57 @@
 package org.dailyinfo.telegrambot.telegrambot.service.weather.bean;
 
+import java.util.List;
+
 public class WeatherBean {
+    public Coord coord;
+    public List<WeatherTypes> weather;
+    public String base;
+    public Main main;
+    public int visibility;
+    public Wind wind;
+    public Clouds clouds;
+    public String dt;
+    public Sys sys;
+    public String timezone;
+    public String id;
     public String name;
-    public String country;
+    public String cod;
+
+
+
+
+
+}
+class Coord{
+    public String lon;
+    public String lat;
+}
+class WeatherTypes {
+    public String id;
+    public String main;
     public String description;
+    public String icon;
+}
+class Main {
     public double temp;
     public double feels_like;
     public double temp_min;
     public double temp_max;
-    public int pressure;
-    public int humidity;
+    public double pressure;
+    public double humidity;
+}
+class Wind {
     public int speed;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getTemp() {
-        return temp;
-    }
-
-    public void setTemp(double temp) {
-        this.temp = temp;
-    }
-
-    public double getFeels_like() {
-        return feels_like;
-    }
-
-    public void setFeels_like(double feels_like) {
-        this.feels_like = feels_like;
-    }
-
-    public double getTemp_min() {
-        return temp_min;
-    }
-
-    public void setTemp_min(double temp_min) {
-        this.temp_min = temp_min;
-    }
-
-    public double getTemp_max() {
-        return temp_max;
-    }
-
-    public void setTemp_max(double temp_max) {
-        this.temp_max = temp_max;
-    }
-
-    public int getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(int pressure) {
-        this.pressure = pressure;
-    }
-
-    public int getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
-    }
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    // public WeatherBean(String name, String country, String description, double temp, double feels_like, double temp_min, double temp_max, int pressure, int humidity, int speed) {
-    //     this.name = name;
-    //     this.country = country;
-    //     this.description = description;
-    //     this.temp = temp;
-    //     this.feels_like = feels_like;
-    //     this.temp_min = temp_min;
-    //     this.temp_max = temp_max;
-    //     this.pressure = pressure;
-    //     this.humidity = humidity;
-    //     this.speed = speed;
-    //
-    // }
-
-
+    public int deg;
+    public int gust;
+}
+class Clouds {
+    public int all;
+}
+class Sys {
+    public int type;
+    public  String id;
+    public  String country;
+    public  String sunrise;
+    public  String sunset;
 }
