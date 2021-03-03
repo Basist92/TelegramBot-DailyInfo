@@ -1,5 +1,7 @@
 package org.dailyinfo.telegrambot.telegrambot.service.weather;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class Weather {
+
     public String connection() throws IOException {
         final URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=Minsk&units=metric&lang=ru&appid=19efcf206130c164112f3620a141d3d1");
         final HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -20,7 +23,8 @@ public class Weather {
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
-            return content.toString();
+            String answer = makeReadableMessage(content.toString());
+            return answer;
         } catch (final Exception ex) {
             ex.printStackTrace();
             return "";
@@ -29,5 +33,9 @@ public class Weather {
 
     }
 
-
+    private String makeReadableMessage(String dataJSONFromAPI) {
+        JSONObject dataInJSON = new JSONObject(dataJSONFromAPI);
+        DailyWeather weather = new DailyWeather(dataInJSON);
+        return weather.toString();
+    }
 }
