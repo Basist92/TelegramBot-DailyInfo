@@ -39,7 +39,7 @@ public class DailyWeather {
     public String toString() {
         return "Погода в локации" + " " + cityName + "," + country + " " + "на данный момент:" + "\n" +
                 skyState + ", температура наружного воздуха: " + temp + "°С," +
-                " па ашчушчэниям " + tempFeeled + "°С," + "\n" +
+                " по ощущениям " + tempFeeled + "°С," + "\n" +
                 "Относительная влажность воздуха: " + humidity + "%" + "\n" +
                 "Атмосферное давление: " + pressure + "мбар" + "\n" +
                 "Скорость ветра: " + windSpeed + "м/с" + "\n" +
