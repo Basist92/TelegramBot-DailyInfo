@@ -1,5 +1,6 @@
 package org.dailyinfo.telegrambot.telegrambot.service.quote.handle;
 
+import org.dailyinfo.telegrambot.telegrambot.service.quote.model.OnlyQuote;
 import org.dailyinfo.telegrambot.telegrambot.service.quote.model.Quote;
 import org.dailyinfo.telegrambot.telegrambot.service.quote.model.UpdateQuote;
 import org.json.JSONArray;
@@ -10,15 +11,21 @@ public class ResponseParser {
 
     public static UpdateQuote getUpdateQuote(String responseFromApi) {
 
-        JSONObject updateQuoteJson = null;
-        try {
-            updateQuoteJson = new JSONObject(responseFromApi);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        JSONObject updateQuoteJson;
+//        try {
+//            updateQuoteJson = new JSONObject(responseFromApi);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+        updateQuoteJson = new JSONObject(responseFromApi);
         return makeUpdateQuoteObject(updateQuoteJson);
     }
+
+//    //TODO model for Quote with only one string -> Body of quote
+//    private static OnlyQuote makeUpdateQuoteObject(JSONObject updateQuoteJson, int quantityOfLine) {
+//        String body = updateQuoteJson.getString("body");
+//        return new OnlyQuote(body);
+//    }
 
     private static UpdateQuote makeUpdateQuoteObject(JSONObject updateQuoteJson) {
 

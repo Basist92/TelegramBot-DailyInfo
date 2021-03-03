@@ -6,7 +6,7 @@ import org.dailyinfo.telegrambot.telegrambot.service.quote.model.UpdateQuote;
 
 import java.io.IOException;
 
-public class Quote {
+public class RandomQuote {
 
 
     public static String randomQuote() throws IOException {
