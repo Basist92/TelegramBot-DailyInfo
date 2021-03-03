@@ -1,0 +1,40 @@
+{
+  "update_id": 781075861,
+  "message": {
+    "chatId": 1038503819,
+    "superGroupMessage": false,
+    "groupMessage": false,
+    "userMessage": true,
+    "channelMessage": false,
+    "command": true,
+    "reply": false,
+    "message_id": 3,
+    "from": {
+      "bot": false,
+      "id": 1038503819,
+      "first_name": "Aleksandr",
+      "is_bot": false,
+      "last_name": "Bohan",
+      "language_code": "ru"
+    },
+    "date": 1614521858,
+    "chat": {
+      "channelChat": false,
+      "superGroupChat": false,
+      "userChat": true,
+      "groupChat": false,
+      "id": 1038503819,
+      "type": "private",
+      "first_name": "Aleksandr",
+      "last_name": "Bohan"
+    },
+    "text": "/aquarius",
+    "entities": [
+      {
+        "type": "bot_command",
+        "offset": 0,
+        "length": 6
+      }
+    ]
+  }
+}
