@@ -11,10 +11,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.File;
+import java.io.IOException;
 
 @Component
 @PropertySource("application.properties")
 public class TelegramBot extends TelegramLongPollingBot {
+
     @Value("${bot.username}")
     private String botUserName;
     @Value("${bot.token}")
@@ -29,15 +31,21 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
 
 //      this is method will need for covering by test (he saves JSON)
-//        saveJSON(update);
+//      saveJSON(update);
 
-        SendMessage sendMessage = messageService.onUpdateReceived(update);
+
+        SendMessage sendMessage = null;
+        try {
+            sendMessage = messageService.onUpdateReceived(update);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

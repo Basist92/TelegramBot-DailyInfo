@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
+import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,7 +37,7 @@ class MessageServiceTest {
     }
 
     @Test
-    void onStartSReceived() throws IOException {
+    void onStartReceived() throws IOException {
 
         Update update = objectMapper.readValue(
                 new File("src/test/resources/botCommand/start.json"), Update.class);
@@ -44,7 +48,7 @@ class MessageServiceTest {
     }
 
     @Test
-    void onHelpSReceived() throws IOException {
+    void onHelpReceived() throws IOException {
 
         Update update = objectMapper.readValue(
                 new File("src/test/resources/botCommand/help.json"), Update.class);
@@ -55,13 +59,48 @@ class MessageServiceTest {
     }
 
     @Test
-    void onSettingsSReceived() throws IOException {
+    void onSettingsReceived() throws IOException {
 
         Update update = objectMapper.readValue(
                 new File("src/test/resources/botCommand/settings.json"), Update.class);
 
         SendMessage actualResult = messageService.onUpdateReceived(update);
         SendMessage expectedResult = createMessage("currently no settings");
+        assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void onUSDReceived() throws IOException {
+        Update update = objectMapper.readValue(
+                new File("src/test/resources/botCommand/USDTest.json"), Update.class);
+
+        SendMessage actualResult = messageService.onUpdateReceived(update);
+        SendMessage expectedResult = createMessage(exampleWithUSD());
+        String strExpected = expectedResult.toString().replaceAll("\\s+","");
+        String strActual = actualResult.toString().replaceAll("\\s+","");
+        assertEquals(strExpected, strActual);
+    }
+
+
+    private String exampleWithUSD() {
+        String usdExample = String.format("ОФИЦИАЛЬНЫЕ КУРСЫ ВАЛЮТ ПО НБРБ на сегодня \n%s\n\n",
+                LocalDate.of(2020, 7, 6).format(DateTimeFormatter.ofPattern("dd MMMM yyyy"))) + "\n" +
+                "\n" +
+                " Код   Кол. Ед.   Валюта                                  Курс   \n" +
+                "======================================================== USD   1     " +
+                "     Доллар США                                2.4214\n";
+        return usdExample;
+    }
+
+    @Test
+    void onCancerReceived() throws IOException, TelegramApiException, XMLStreamException {
+        Update update = objectMapper.readValue(new File("src/test/resources/cancer.json"), Update.class);
+        SendMessage actualResult = messageService.onUpdateReceived(update);
+        SendMessage expectedResult = createMessage(
+                "\n" + "Рак" + "\n" + "[[yesterday: Сегодняшний день может начать очередную полосу неудач. Однако в ваших силах сократить ее длительность до минимума. Небольшое умственное усилие, и к вечеру все снова будет в порядке. ]]" + "\n" + "Рак" + "\n" +
+                        "[[today: Вам срочно необходимо улучшить настроение. Возьмитесь за какую-нибудь задачу, из тех, что попроще и не требуют много времени. Справившись с ней, вы почувствуете прилив уверенности в себе. ]]" + "\n" + "Рак" + "\n" +
+                        "[[tomorrow: Вы столь углубились в поиски совершенства, что можете остаться в одиночестве. Никто не идеален до такой степени, чтобы удовлетворять вашим запросам. Может, стоит их немного пересмотреть? ]]" + "\n" + "Рак" + "\n" +
+                        "[[tomorrow02: Сегодня вы будете целиком погружены в собственные мысли и действия, и никакие внешние раздражители никакого воздействия на вас оказать не смогут. Разве что, случится что-то уж совсем неординарное. Этого, однако, произойти не должно. ]]");
         assertEquals(expectedResult, actualResult);
     }
 
