@@ -3,15 +3,19 @@
 You can check the bot, 
 write in search: *@YourDailyInfo_bot*
 
-####For starting bot, push the button "Start"
+This bot can show information 
 
-## Quote
-if you want a random quote, please write a command */quote*
+* list of rates
+* USD rate
+* horoscope
+* weather
+
+#### For starting bot, push the button "Start"
 
 ### Team members
 
 * Basist92
 * Shpaser2
-* DenisAbramovDm’s 
-* AnzhelaKhamitskaya’s 
-* AleksandrBohan’s response
+* DenisAbramovDm
+* AnzhelaKhamitskaya
+* AleksandrBohan
