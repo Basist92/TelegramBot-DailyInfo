@@ -1,19 +1,20 @@
 package org.dailyinfo.telegrambot.telegrambot.service;
 
 
+import org.dailyinfo.telegrambot.telegrambot.service.weather.Weather;
+import org.dailyinfo.telegrambot.telegrambot.service.weather.WeatherParsing;
 import org.dailyinfo.telegrambot.telegrambot.service.quote.RandomQuote;
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.*;
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.Horoscope.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-
 import java.io.IOException;
-
 
 @Service
 public class MessageService{
@@ -41,10 +42,13 @@ public class MessageService{
     @Autowired
         Virgo virgo;
 
-    public SendMessage onUpdateReceived(Update update) {
-        Aquarius aquarius = new Aquarius();
+    public SendMessage onUpdateReceived(Update update) throws IOException {
+
+      Aquarius aquarius = new Aquarius();
 
         SendMessage sendMessage = new SendMessage();
+    Weather weather = new Weather();
+
         if (update != null) {
             Message message = update.getMessage();
             sendMessage.setChatId(message.getChatId());
@@ -57,6 +61,8 @@ public class MessageService{
                     return sendMessage.setText("currently no settings");
                 } else if (messageText.equals("/help")) {
                     return sendMessage.setText("assistance at the development stage");
+                }else if (messageText.equals("/weather")) {
+                    return sendMessage.setText(weather.connection());
                 } else if (messageText.equals("/quote")) {
                     try {
                         return sendMessage.setText(RandomQuote.randomQuote());
