@@ -99,20 +99,7 @@ public class MessageService {
                 }
 
                 if (messageText.equals("/horoscope")) {
-                    return sendMessage.setText("""
-                            Знаки зодиака: \s
-                            /leo
-                            /aquarius
-                            /aries
-                            /cancer
-                            /capricorn
-                            /gemini
-                            /libra
-                            /pisces
-                            /saggitarius
-                            /scorpio
-                            /taurus
-                            /virgo""");
+                    return sendMessage.setText(showHoroscope());
 
                 }
                 if (messageText.equals("/leo")) {
@@ -191,6 +178,24 @@ public class MessageService {
                 /horoscope - гороскоп
                 """;
         return help;
+    }
+
+    private String showHoroscope(){
+        String horoscope = """
+                            Знаки зодиака: \s
+                            /leo
+                            /aquarius
+                            /aries
+                            /cancer
+                            /capricorn
+                            /gemini
+                            /libra
+                            /pisces
+                            /saggitarius
+                            /scorpio
+                            /taurus
+                            /virgo""";
+        return horoscope;
     }
 }
 
