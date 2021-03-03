@@ -8,11 +8,8 @@ import java.io.IOException;
 
 public class RandomQuote {
 
-
     public static String randomQuote() throws IOException {
-
         UpdateQuote quote = Handler.getRandomQuote();
-
         return quote.toString();
     }
 }

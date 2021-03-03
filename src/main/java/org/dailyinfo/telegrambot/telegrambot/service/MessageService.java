@@ -49,7 +49,6 @@ public class MessageService {
 
     public SendMessage onUpdateReceived(Update update) throws IOException {
 
-//        Aquarius aquarius = new Aquarius();
 
         SendMessage sendMessage = new SendMessage();
         Weather weather = new Weather();
@@ -59,7 +58,6 @@ public class MessageService {
             sendMessage.setChatId(message.getChatId());
             if (message != null && message.hasText()) {
                 String messageText = message.getText();
-
                 if (messageText.equals("/start")) {
                     return sendMessage.setText("Hi! I am your bot for every day =) write /help");
                 } else if (messageText.equals("/settings")) {
@@ -97,10 +95,8 @@ public class MessageService {
                         return sendMessage.setText(e.getMessage());
                     }
                 }
-
                 if (messageText.equals("/horoscope")) {
                     return sendMessage.setText(showHoroscope());
-
                 }
                 if (messageText.equals("/leo")) {
 
@@ -117,8 +113,6 @@ public class MessageService {
                     return sendMessage.setText(aries.forAries("Овен", 0) + aries.forAries("Овен", 1)
                             + aries.forAries("Овен", 2) + aries.forAries("Овен", 3));
                 }
-
-
                 if (messageText.equals("/cancer")) {
                     return sendMessage.setText(cancer.forCancer("Рак", 0) + cancer.forCancer("Рак", 1) +
                             cancer.forCancer("Рак", 2) + cancer.forCancer("Рак", 3));
@@ -145,7 +139,6 @@ public class MessageService {
                     return sendMessage.setText(saggittarius.forSaggitarius("Стрелец", 0) + saggittarius.forSaggitarius("Стрелец", 1)
                             + saggittarius.forSaggitarius("Стрелец", 2) + saggittarius.forSaggitarius("Стрелец", 3));
                 }
-
                 if (messageText.equals("/scorpio")) {
                     return sendMessage.setText(scorpio.forScorpio("Скорпион", 0) + scorpio.forScorpio("Скорпион", 1)
                             + scorpio.forScorpio("Скорпион", 2) + scorpio.forScorpio("Скорпион", 3));
@@ -158,7 +151,6 @@ public class MessageService {
                     return sendMessage.setText(virgo.forVirgo("Дева", 0) + virgo.forVirgo("Дева", 1) +
                             virgo.forVirgo("Дева", 2) + virgo.forVirgo("Дева", 3));
                 }
-
             }
             return sendMessage.setText("sorry, i don`t understand you");
         }
@@ -180,21 +172,21 @@ public class MessageService {
         return help;
     }
 
-    private String showHoroscope(){
+    private String showHoroscope() {
         String horoscope = """
-                            Знаки зодиака: \s
-                            /leo
-                            /aquarius
-                            /aries
-                            /cancer
-                            /capricorn
-                            /gemini
-                            /libra
-                            /pisces
-                            /saggitarius
-                            /scorpio
-                            /taurus
-                            /virgo""";
+                Знаки зодиака: \s
+                /leo
+                /aquarius
+                /aries
+                /cancer
+                /capricorn
+                /gemini
+                /libra
+                /pisces
+                /saggitarius
+                /scorpio
+                /taurus
+                /virgo""";
         return horoscope;
     }
 }
