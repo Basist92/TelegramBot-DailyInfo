@@ -61,7 +61,7 @@ public class MessageService {
                 String messageText = message.getText();
 
                 if (messageText.equals("/start")) {
-                    return sendMessage.setText("Hi! I am your bot for every day =)");
+                    return sendMessage.setText("Hi! I am your bot for every day =) write /help");
                 } else if (messageText.equals("/settings")) {
                     return sendMessage.setText("currently no settings");
                 } else if (messageText.equals("/help")) {
