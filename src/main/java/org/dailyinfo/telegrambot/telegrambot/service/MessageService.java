@@ -1,14 +1,18 @@
 package org.dailyinfo.telegrambot.telegrambot.service;
 
 
+import org.dailyinfo.telegrambot.telegrambot.service.quote.RandomQuote;
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.*;
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.Horoscope.*;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
+
+import java.io.IOException;
 
 
 @Service
@@ -46,7 +50,23 @@ public class MessageService{
             sendMessage.setChatId(message.getChatId());
             if (message != null && message.hasText()) {
                 String messageText = message.getText();
-                if (messageText.equals("/horoscope")) {
+
+              if (messageText.equals("/start")) {
+                    return sendMessage.setText("Hi! I am your bot for every day =)");
+                } else if (messageText.equals("/settings")) {
+                    return sendMessage.setText("currently no settings");
+                } else if (messageText.equals("/help")) {
+                    return sendMessage.setText("assistance at the development stage");
+                } else if (messageText.equals("/quote")) {
+                    try {
+                        return sendMessage.setText(RandomQuote.randomQuote());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return sendMessage.setText("Sorry, no server is available to handle this request.");
+                    }
+			    }
+			  
+			  if (messageText.equals("/horoscope")) {
                     return sendMessage.setText("Знаки зодиака:  " + "\n" + "/leo" + "\n" + "/aquarius" + "\n" + "/aries"
                             + "\n" + "/cancer" + "\n" + "/capricorn" + "\n" + "/gemini" + "\n" + "/libra" +
                             "\n" + "/pisces" + "\n" + "/saggitarius" + "\n" + "/scorpio" + "\n" + "/taurus" + "\n" + "/virgo");
@@ -71,6 +91,7 @@ public class MessageService{
                 if (messageText.equals("/cancer")) {
                     return sendMessage.setText(cancer.forCancer("Рак", 0) + cancer.forCancer("Рак", 1) +
                             cancer.forCancer("Рак", 2) + cancer.forCancer("Рак", 3));
+
                 }
                 if (messageText.equals("/capricorn")) {
                     return sendMessage.setText(capricorn.forCapricorn("Козерог", 0) + capricorn.forCapricorn("Козерог", 1) +

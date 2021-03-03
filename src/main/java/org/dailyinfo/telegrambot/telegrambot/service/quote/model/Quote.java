@@ -1,9 +1,10 @@
-package org.dailyinfo.telegrambot.telegrambot.config.quote;
+package org.dailyinfo.telegrambot.telegrambot.service.quote.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Quote {
 
@@ -14,7 +15,7 @@ public class Quote {
     @JsonProperty("private")
     private boolean isPrivate;
     @JsonProperty("tags")
-    private ArrayList<String> tags;
+    private String[] tags;
     @JsonProperty("url")
     private String url;
     @JsonProperty("favorites_count")
@@ -33,6 +34,26 @@ public class Quote {
     public Quote() {
     }
 
+    public Quote(int id, boolean dialogue,
+                 boolean isPrivate, String[] tags,
+                 String url, int favorites_count,
+                 int upvotes_count, int downvotes_count,
+                 String author, String author_permalink,
+                 String body) {
+
+        this.id = id;
+        this.dialogue = dialogue;
+        this.isPrivate = isPrivate;
+        this.tags = tags;
+        this.url = url;
+        this.favorites_count = favorites_count;
+        this.upvotes_count = upvotes_count;
+        this.downvotes_count = downvotes_count;
+        this.author = author;
+        this.author_permalink = author_permalink;
+        this.body = body;
+    }
+
     public int getId() {
         return id;
     }
@@ -42,7 +63,7 @@ public class Quote {
     public boolean isPrivate() {
         return isPrivate;
     }
-    public ArrayList<String> getTags() {
+    public String[] getTags() {
         return tags;
     }
     public String getUrl() {
@@ -67,6 +88,22 @@ public class Quote {
         return body;
     }
 
+    @Override
+    public String toString() {
+        return "Quote{" +
+                "id=" + id +
+                ", dialogue=" + dialogue +
+                ", isPrivate=" + isPrivate +
+                ", tags=" + Arrays.toString(tags) +
+                ", url='" + url + '\'' +
+                ", favorites_count=" + favorites_count +
+                ", upvotes_count=" + upvotes_count +
+                ", downvotes_count=" + downvotes_count +
+                ", author='" + author + '\'' +
+                ", author_permalink='" + author_permalink + '\'' +
+                ", body='" + body + '\'' +
+                '}';
+    }
 
     public boolean hasTags() {
         return this.tags != null;
