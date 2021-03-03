@@ -16,6 +16,7 @@ import java.io.IOException;
 @Component
 @PropertySource("application.properties")
 public class TelegramBot extends TelegramLongPollingBot {
+
     @Value("${bot.username}")
     private String botUserName;
     @Value("${bot.token}")
@@ -30,7 +31,8 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
 
 //      this is method will need for covering by test (he saves JSON)
-//        saveJSON(update);
+//      saveJSON(update);
+
 
         SendMessage sendMessage = null;
         try {
@@ -38,12 +40,12 @@ public class TelegramBot extends TelegramLongPollingBot {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
     }
 
     @Override

@@ -1,14 +1,14 @@
 {
-  "update_id": 169781566,
+  "update_id": 169781564,
   "message": {
     "chatId": 763001640,
     "superGroupMessage": false,
-    "reply": false,
     "userMessage": true,
-    "command": true,
-    "groupMessage": false,
+    "command": false,
     "channelMessage": false,
-    "message_id": 6,
+    "groupMessage": false,
+    "reply": false,
+    "message_id": 3,
     "from": {
       "bot": false,
       "id": 763001640,
@@ -18,7 +18,7 @@
       "username": "UsenkoRoman",
       "language_code": "ru"
     },
-    "date": 1614396565,
+    "date": 1614387770,
     "chat": {
       "userChat": true,
       "channelChat": false,
@@ -30,15 +30,6 @@
       "last_name": "Roman",
       "username": "UsenkoRoman"
     },
-
-    "text": "123123",
-
-    "entities": [
-      {
-        "type": "bot_command",
-        "offset": 0,
-        "length": 5
-      }
-    ]
+    "text": "/USDTest"
   }
 }

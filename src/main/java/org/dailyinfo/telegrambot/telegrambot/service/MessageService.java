@@ -1,6 +1,6 @@
 package org.dailyinfo.telegrambot.telegrambot.service;
 
-
+import org.dailyinfo.telegrambot.telegrambot.service.currencyRates.View;
 import org.dailyinfo.telegrambot.telegrambot.service.weather.Weather;
 import org.dailyinfo.telegrambot.telegrambot.service.weather.WeatherParsing;
 import org.dailyinfo.telegrambot.telegrambot.service.quote.RandomQuote;
@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import java.io.IOException;
+
 
 import java.io.IOException;
 
@@ -70,7 +72,29 @@ public class MessageService{
                         e.printStackTrace();
                         return sendMessage.setText("Sorry, no server is available to handle this request.");
                     }
-			    }
+			    
+              }else if(messageText.equals("/rates")){
+                        try {
+                            return sendMessage.setText(new View("/rates")
+                                    .present());
+                        } catch (IOException e) {
+                            return sendMessage.setText(e.getMessage());
+                        }
+                    }else if(messageText.equals("/USD")){
+                        try {
+                            return sendMessage.setText(new View("/USD")
+                                    .present());
+                        } catch (IOException e) {
+                            return sendMessage.setText(e.getMessage());
+                        }
+                    }else if(messageText.equals("/USDTest")){
+                        try {
+                            return sendMessage.setText(new View("/USDTest")
+                                    .present());
+                        } catch (IOException e) {
+                            return sendMessage.setText(e.getMessage());
+                        }
+                    }
 			  
 			  if (messageText.equals("/horoscope")) {
                     return sendMessage.setText("Знаки зодиака:  " + "\n" + "/leo" + "\n" + "/aquarius" + "\n" + "/aries"
@@ -135,8 +159,13 @@ public class MessageService{
                 }
 
             }
+            return sendMessage.setText("sorry, i don`t understand you");
         }
+
+
+
         return sendMessage.setText("sorry, i don`t understand you");
     }
 
 }
+
