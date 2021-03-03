@@ -1,17 +1,43 @@
-# Daily telegram bot
+# Daily telegram bot ver 1.0-beta
 
 You can check the bot, 
 write in search: *@YourDailyInfo_bot*
 
-####For starting bot, push the button "Start"
+This bot can show information 
 
-## Quote
-if you want a random quote, please write a command */quote*
+* list of rates
+* USD rate
+* horoscope
+* weather
+
+#### For starting bot, push the button "Start"
+
+
+## Планы (30 дней)
+## Бот легко маштабируем, в связи с этим через *месяц* планируется полноценный релиз с достаточным продуктом для выхода на рынок и дальнейшей его монетизации
+### Погода
+* будет добавлен выбор города
+### Гороскоп
+* будет добавлен выбор (сегодня, завтра, месяц)
+### Курс валют
+* будет добавлен выбор валюты
+### Цитата
+* будет добавлен вывод случайной цитаты
+
+## Дальнейшие планы
+* Расширение функционала каждой позиции
+* Добавить фунцию отображения новостей
+
+# Инвесторам
+### монетизация бота будет осуществляться за счёт регулярных постов
+
+
 
 ### Team members
 
 * Basist92
 * Shpaser2
-* DenisAbramovDm’s 
-* AnzhelaKhamitskaya’s 
-* AleksandrBohan’s response
+* DenisAbramovDm
+* AnzhelaKhamitskaya
+* AleksandrBohan
+
