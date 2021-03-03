@@ -13,43 +13,46 @@ import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+
 import java.io.IOException;
 
 
 import java.io.IOException;
 
 @Service
-public class MessageService{
-@Autowired
-        Aquarius aquarius;
-    @Autowired
-        Aries aries;
-    @Autowired
-        Cancer cancer;
-    @Autowired
-        Capricorn capricorn;
-    @Autowired
-        Gemini gemini;
-        Leo leo;
-    @Autowired
-        Libra libra;
-    @Autowired
-        Pisces pisces;
-    @Autowired
-        Saggittarius saggittarius;
-    @Autowired
-        Scorpio scorpio;
-    @Autowired
-        Taurus taurus;
-    @Autowired
-        Virgo virgo;
+public class MessageService {
+
+    //    @Autowired
+    Aquarius aquarius = new Aquarius();
+    //    @Autowired
+    Aries aries = new Aries();
+    //    @Autowired
+    Cancer cancer = new Cancer();
+    //    @Autowired
+    Capricorn capricorn = new Capricorn();
+    //    @Autowired
+    Gemini gemini = new Gemini();
+    Leo leo = new Leo();
+    //    @Autowired
+    Libra libra = new Libra();
+    //    @Autowired
+    Pisces pisces = new Pisces();
+    //    @Autowired
+    Saggittarius saggittarius = new Saggittarius();
+    //    @Autowired
+    Scorpio scorpio = new Scorpio();
+    //    @Autowired
+    Taurus taurus = new Taurus();
+    //    @Autowired
+    Virgo virgo = new Virgo();
+
 
     public SendMessage onUpdateReceived(Update update) throws IOException {
 
-      Aquarius aquarius = new Aquarius();
+//        Aquarius aquarius = new Aquarius();
 
         SendMessage sendMessage = new SendMessage();
-    Weather weather = new Weather();
+        Weather weather = new Weather();
 
         if (update != null) {
             Message message = update.getMessage();
@@ -57,13 +60,13 @@ public class MessageService{
             if (message != null && message.hasText()) {
                 String messageText = message.getText();
 
-              if (messageText.equals("/start")) {
+                if (messageText.equals("/start")) {
                     return sendMessage.setText("Hi! I am your bot for every day =)");
                 } else if (messageText.equals("/settings")) {
                     return sendMessage.setText("currently no settings");
                 } else if (messageText.equals("/help")) {
-                    return sendMessage.setText("assistance at the development stage");
-                }else if (messageText.equals("/weather")) {
+                    return sendMessage.setText("showHelp");
+                } else if (messageText.equals("/weather")) {
                     return sendMessage.setText(weather.connection());
                 } else if (messageText.equals("/quote")) {
                     try {
@@ -72,49 +75,60 @@ public class MessageService{
                         e.printStackTrace();
                         return sendMessage.setText("Sorry, no server is available to handle this request.");
                     }
-			    
-              }else if(messageText.equals("/rates")){
-                        try {
-                            return sendMessage.setText(new View("/rates")
-                                    .present());
-                        } catch (IOException e) {
-                            return sendMessage.setText(e.getMessage());
-                        }
-                    }else if(messageText.equals("/USD")){
-                        try {
-                            return sendMessage.setText(new View("/USD")
-                                    .present());
-                        } catch (IOException e) {
-                            return sendMessage.setText(e.getMessage());
-                        }
-                    }else if(messageText.equals("/USDTest")){
-                        try {
-                            return sendMessage.setText(new View("/USDTest")
-                                    .present());
-                        } catch (IOException e) {
-                            return sendMessage.setText(e.getMessage());
-                        }
+                } else if (messageText.equals("/rates")) {
+                    try {
+                        return sendMessage.setText(new View("/rates")
+                                .present());
+                    } catch (IOException e) {
+                        return sendMessage.setText(e.getMessage());
                     }
-			  
-			  if (messageText.equals("/horoscope")) {
-                    return sendMessage.setText("Знаки зодиака:  " + "\n" + "/leo" + "\n" + "/aquarius" + "\n" + "/aries"
-                            + "\n" + "/cancer" + "\n" + "/capricorn" + "\n" + "/gemini" + "\n" + "/libra" +
-                            "\n" + "/pisces" + "\n" + "/saggitarius" + "\n" + "/scorpio" + "\n" + "/taurus" + "\n" + "/virgo");
+                } else if (messageText.equals("/USD")) {
+                    try {
+                        return sendMessage.setText(new View("/USD")
+                                .present());
+                    } catch (IOException e) {
+                        return sendMessage.setText(e.getMessage());
+                    }
+                } else if (messageText.equals("/USDTest")) {
+                    try {
+                        return sendMessage.setText(new View("/USDTest")
+                                .present());
+                    } catch (IOException e) {
+                        return sendMessage.setText(e.getMessage());
+                    }
+                }
 
-                }  if (messageText.equals("/leo")) {
+                if (messageText.equals("/horoscope")) {
+                    return sendMessage.setText("""
+                            Знаки зодиака: \s
+                            /leo
+                            /aquarius
+                            /aries
+                            /cancer
+                            /capricorn
+                            /gemini
+                            /libra
+                            /pisces
+                            /saggitarius
+                            /scorpio
+                            /taurus
+                            /virgo""");
+
+                }
+                if (messageText.equals("/leo")) {
 
                     return sendMessage.setText(leo.forLeo("Лев", 0) + leo.forLeo("Лев", 1)
                             + leo.forLeo("Лев", 2) + leo.forLeo("Лев", 3));
                 }
                 if (messageText.equals("/aquarius")) {
 
-                        return sendMessage.setText(aquarius.forAquarius("Водолей", 0) + aquarius.forAquarius("Водолей", 1)
-                                + aquarius.forAquarius("Водолей", 2) +aquarius.forAquarius("Водолей", 3));
-                    }
+                    return sendMessage.setText(aquarius.forAquarius("Водолей", 0) + aquarius.forAquarius("Водолей", 1)
+                            + aquarius.forAquarius("Водолей", 2) + aquarius.forAquarius("Водолей", 3));
+                }
                 if (messageText.equals("/aries")) {
 
-                    return sendMessage.setText(aries.forAries("Овен", 0) + aries.forAries("Овен",1)
-                            + aries.forAries("Овен",2) + aries.forAries("Овен",3));
+                    return sendMessage.setText(aries.forAries("Овен", 0) + aries.forAries("Овен", 1)
+                            + aries.forAries("Овен", 2) + aries.forAries("Овен", 3));
                 }
 
 
@@ -161,11 +175,22 @@ public class MessageService{
             }
             return sendMessage.setText("sorry, i don`t understand you");
         }
-
-
-
         return sendMessage.setText("sorry, i don`t understand you");
     }
 
+    private String showHelp() {
+        String help = """
+                /start - приветствие
+                /settings - в доработке
+                /help - вывод всех коанд
+                /weather - текущая погода
+                /quote - случайная цитата
+                    (в данный момент не рабботает
+                /rates - список курса валют
+                /USD - курс USD на сегодня
+                /horoscope - гороскоп
+                """;
+        return help;
+    }
 }
 
