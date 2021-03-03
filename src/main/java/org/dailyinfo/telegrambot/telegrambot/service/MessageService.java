@@ -65,7 +65,7 @@ public class MessageService {
                 } else if (messageText.equals("/settings")) {
                     return sendMessage.setText("currently no settings");
                 } else if (messageText.equals("/help")) {
-                    return sendMessage.setText("showHelp");
+                    return sendMessage.setText(showHelp());
                 } else if (messageText.equals("/weather")) {
                     return sendMessage.setText(weather.connection());
                 } else if (messageText.equals("/quote")) {
