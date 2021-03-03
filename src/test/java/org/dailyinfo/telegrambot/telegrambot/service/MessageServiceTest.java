@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
+import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -77,7 +79,6 @@ class MessageServiceTest {
         String strExpected = expectedResult.toString().replaceAll("\\s+","");
         String strActual = actualResult.toString().replaceAll("\\s+","");
         assertEquals(strExpected, strActual);
-
     }
 
 
@@ -91,6 +92,17 @@ class MessageServiceTest {
         return usdExample;
     }
 
+    @Test
+    void onCancerReceived() throws IOException, TelegramApiException, XMLStreamException {
+        Update update = objectMapper.readValue(new File("src/test/resources/cancer.json"), Update.class);
+        SendMessage actualResult = messageService.onUpdateReceived(update);
+        SendMessage expectedResult = createMessage(
+                "\n" + "Рак" + "\n" + "[[yesterday: Сегодняшний день может начать очередную полосу неудач. Однако в ваших силах сократить ее длительность до минимума. Небольшое умственное усилие, и к вечеру все снова будет в порядке. ]]" + "\n" + "Рак" + "\n" +
+                        "[[today: Вам срочно необходимо улучшить настроение. Возьмитесь за какую-нибудь задачу, из тех, что попроще и не требуют много времени. Справившись с ней, вы почувствуете прилив уверенности в себе. ]]" + "\n" + "Рак" + "\n" +
+                        "[[tomorrow: Вы столь углубились в поиски совершенства, что можете остаться в одиночестве. Никто не идеален до такой степени, чтобы удовлетворять вашим запросам. Может, стоит их немного пересмотреть? ]]" + "\n" + "Рак" + "\n" +
+                        "[[tomorrow02: Сегодня вы будете целиком погружены в собственные мысли и действия, и никакие внешние раздражители никакого воздействия на вас оказать не смогут. Разве что, случится что-то уж совсем неординарное. Этого, однако, произойти не должно. ]]");
+        assertEquals(expectedResult, actualResult);
+    }
 
     private SendMessage createMessage(String text) {
         SendMessage sendMessage = new SendMessage();

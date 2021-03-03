@@ -30,7 +30,9 @@
       "last_name": "Roman",
       "username": "UsenkoRoman"
     },
-    "text": "/some command",
+
+    "text": "123123",
+
     "entities": [
       {
         "type": "bot_command",
