@@ -11,6 +11,11 @@ public class DailyWeather {
     private int visibility;
     private int cloudsAtAll;
     private String cityName;
+    private int tempFeeled;
+    private int pressure;
+    private int windSpeed;
+    private String country;
+
 
     public DailyWeather(JSONObject weatherToday) {
         this.cityName = weatherToday.getString("name");
@@ -22,17 +27,22 @@ public class DailyWeather {
         this.temp = main.getInt("temp");
         this.humidity = main.getInt("humidity");
         this.visibility = weatherToday.getInt("visibility");
+        this.pressure = main.getInt("pressure");
+        this.tempFeeled = main.getInt("feels_like");
+        JSONObject wind = weatherToday.getJSONObject("wind");
+        this.windSpeed = wind.getInt("speed");
+        JSONObject sys = weatherToday.getJSONObject("sys");
+        this.country = sys.getString("country");
     }
 
     @Override
     public String toString() {
-        return "dailyWeather{" +
-                "skyState = '" + skyState + '\'' +
-                " , temp = " + temp +
-                " , humidity = " + humidity +
-                " , visibility = " + visibility +
-                " , cloudsAtAllInPercents = " + cloudsAtAll +
-                " , cityName = '" + cityName + '\'' +
-                '}';
+        return "Погода в локации" + " " + cityName + "," + country + " " + "на данный момент:" + "\n" +
+                skyState + ", температура наружного воздуха: " + temp + "°С," +
+                " па ашчушчэниямпше " + tempFeeled + "°С," + "\n" +
+                "Относительная влажность воздуха: " + humidity + "%" + "\n" +
+                "Атмосферное давление: " + pressure + "мбар" + "\n" +
+                "Скорость ветра: " + windSpeed + "м/с" + "\n" +
+                "Дальность видимости: " + visibility + "м";
     }
 }

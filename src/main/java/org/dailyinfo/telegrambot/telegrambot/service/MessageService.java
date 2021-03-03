@@ -14,7 +14,7 @@ public class MessageService {
 
     public SendMessage onUpdateReceived(Update update) throws IOException {
         SendMessage sendMessage = new SendMessage();
-    WeatherParsing weather = new WeatherParsing();
+    Weather weather = new Weather();
 
         if (update != null) {
             Message message = update.getMessage();
@@ -28,7 +28,7 @@ public class MessageService {
                 } else if (messageText.equals("/help")) {
                     return sendMessage.setText("assistance at the development stage");
                 }else if (messageText.equals("/weather")) {
-                    return sendMessage.setText(weather.getWeather());
+                    return sendMessage.setText(weather.connection());
                 }
             }
         }
