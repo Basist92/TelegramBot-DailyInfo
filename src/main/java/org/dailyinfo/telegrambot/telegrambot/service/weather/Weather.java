@@ -23,8 +23,7 @@ public class Weather {
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
-            String answer = makeReadableMessage(content.toString());
-            return answer;
+            return makeReadableMessage(content.toString());
         } catch (final Exception ex) {
             ex.printStackTrace();
             return "";

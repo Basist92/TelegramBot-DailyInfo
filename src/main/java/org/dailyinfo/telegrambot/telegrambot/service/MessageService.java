@@ -2,20 +2,14 @@ package org.dailyinfo.telegrambot.telegrambot.service;
 
 import org.dailyinfo.telegrambot.telegrambot.service.currencyRates.View;
 import org.dailyinfo.telegrambot.telegrambot.service.weather.Weather;
-import org.dailyinfo.telegrambot.telegrambot.service.weather.WeatherParsing;
 import org.dailyinfo.telegrambot.telegrambot.service.quote.RandomQuote;
 import org.dailyinfo.telegrambot.telegrambot.service.horoscope.*;
-import org.dailyinfo.telegrambot.telegrambot.service.horoscope.Horoscope.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-
-import java.io.IOException;
-
 
 import java.io.IOException;
 

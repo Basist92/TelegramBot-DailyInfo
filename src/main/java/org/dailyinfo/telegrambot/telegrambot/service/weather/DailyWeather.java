@@ -5,16 +5,15 @@ import org.json.JSONObject;
 
 public class DailyWeather {
 
-    private String skyState;
-    private int temp;
-    private int humidity;
-    private int visibility;
-    private int cloudsAtAll;
-    private String cityName;
-    private int tempFeeled;
-    private int pressure;
-    private int windSpeed;
-    private String country;
+    private final String skyState;
+    private final int temp;
+    private final int humidity;
+    private final int visibility;
+    private final String cityName;
+    private final int tempFelt;
+    private final int pressure;
+    private final int windSpeed;
+    private final String country;
 
 
     public DailyWeather(JSONObject weatherToday) {
@@ -22,13 +21,11 @@ public class DailyWeather {
         JSONArray weather = weatherToday.getJSONArray("weather");
         this.skyState = weather.getJSONObject(0).getString("description");
         JSONObject main = weatherToday.getJSONObject("main");
-        JSONObject clouds = weatherToday.getJSONObject("clouds");
-        this.cloudsAtAll = clouds.getInt("all");
         this.temp = main.getInt("temp");
         this.humidity = main.getInt("humidity");
         this.visibility = weatherToday.getInt("visibility");
         this.pressure = main.getInt("pressure");
-        this.tempFeeled = main.getInt("feels_like");
+        this.tempFelt = main.getInt("feels_like");
         JSONObject wind = weatherToday.getJSONObject("wind");
         this.windSpeed = wind.getInt("speed");
         JSONObject sys = weatherToday.getJSONObject("sys");
@@ -39,7 +36,7 @@ public class DailyWeather {
     public String toString() {
         return "Погода в локации" + " " + cityName + "," + country + " " + "на данный момент:" + "\n" +
                 skyState + ", температура наружного воздуха: " + temp + "°С," +
-                " по ощущениям " + tempFeeled + "°С," + "\n" +
+                " по ощущениям " + tempFelt + "°С," + "\n" +
                 "Относительная влажность воздуха: " + humidity + "%" + "\n" +
                 "Атмосферное давление: " + pressure + "мбар" + "\n" +
                 "Скорость ветра: " + windSpeed + "м/с" + "\n" +
